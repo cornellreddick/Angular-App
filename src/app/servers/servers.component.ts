@@ -14,9 +14,12 @@ export class ServersComponent implements OnInit {
   allowNewServer = false;
   allowUserName = false;
   serverCreationStatus = "No server was created!";
-  resetUserName = '';
+  serverCreated = false;
   serverName = 'Testserver';
   userName = '';
+  servers = ['Testserver', 'Testserver 2']
+  showSecret = false;
+  log=[];
 
   constructor() { 
     setTimeout(() => {
@@ -33,6 +36,8 @@ export class ServersComponent implements OnInit {
   }
 
   onCreateServer(){
+    this.serverCreated = true;
+    this.servers.push(this.serverName);
     this.serverCreationStatus = 'Server was created! Name is ' + this.serverName;
   }
 
@@ -52,5 +57,18 @@ export class ServersComponent implements OnInit {
   isEmptyOrSpaces(str){
     return str === null || str.match(/^ *$/) !== null;
 }
+
+// onToggleDetails(){
+//   this.showSecret = !this.showSecret;
+//   this.log.push(this.log.length + 1);
+
+// }
+
+onToggleDetails(){
+  this.showSecret = !this.showSecret;
+  this.log.push(new Date());
+
+}
+
 
 }
